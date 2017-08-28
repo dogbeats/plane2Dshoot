@@ -1,0 +1,1131 @@
+#include "Render.h"
+
+
+GLfloat vertices[] = { //FOR PLAYER PLANE
+	// Positions          // Colors				// Texture Coords
+	-0.02f, -0.1f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // Top Right //Bottom Left
+	0.02f, -0.1f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Bottom Right
+	0.02f, 0.1f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // Bottom Left
+	0.02f, 0.1f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // Bottom Left
+	-0.02f, 0.1f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,  // Top Left 
+	-0.02f, -0.1f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // Top Right //Bottom Left (minus 0.5)
+
+	// Positions          // Colors				// Texture Coords
+	-0.13f, -0.75f, 0.10f, 1.0f, 0.0f, 0.0f, 0.875f, 0.5f, // Top Right //Bottom Left
+	0.13f, -0.75f, 0.10f, 0.0f, 1.0f, 0.0f, 1.0f, 0.5f, // Bottom Right
+	0.13f, 0.75f, 0.10f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Bottom Left //top right
+	0.13f, 0.75f, 0.10f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Bottom Left // top right
+	-0.13f, 0.75f, 0.10f, 1.0f, 1.0f, 0.0f, 0.875f, 1.0f,  // Top Left 
+	-0.13f, -0.75f, 0.10f, 1.0f, 0.0f, 0.0f, 0.875f, 0.5f, // Top Right //Bottom Left
+
+	/*-1.0f, -1.0f, -0.5f, 1.0f, 0.0f, 0.0f, 0.875f, 1.0f, // Top Right //Bottom Left
+	1.0f, -1.0f, -0.5f, 0.0f, 1.0f, 0.0f, 0.875f, 0.5f, // Bottom Right
+	1.0f, 1.0f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.5f, // Bottom Left
+	1.0f, 1.0f, -0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.5f, // Bottom Left
+	-1.0f, 1.0f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f,  // Top Left 
+	-1.0f, -1.0f, -0.5f, 1.0f, 0.0f, 0.0f, 0.875f, 1.0f, // Top Right //Bottom Left*/
+
+	//WING LEFT (12)
+	// Positions          // Colors				// Texture Coords
+	-0.45f, -0.08f, 0.1f, 1.0f, 0.0f, 0.0f, 0.125f, 1.0f, // Top Right //Bottom Left
+	0.45f, -0.08f, 0.1f, 0.0f, 1.0f, 0.0f, 0.125f, 0.75f, // Bottom Right
+	0.45f, 0.08f, 0.1f, 0.0f, 0.0f, 1.0f, 0.0f, 0.75f, // Bottom Left //Top Right
+	0.45f, 0.08f, 0.1f, 0.0f, 0.0f, 1.0f, 0.0f, 0.75f, // Bottom Left //Top Right
+	-0.45f, 0.08f, 0.1f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,  // Top Left 
+	-0.45f, -0.08f, 0.1f, 1.0f, 0.0f, 0.0f, 0.125f, 1.0f, // Top Right //Bottom Left //143
+
+	// Positions          // Colors				// Texture Coords
+	-0.25f, -0.25f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top Right //Bottom Left
+	0.25f, -0.25f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Bottom Right
+	0.25f, 0.25f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Bottom Left //Top Right
+	0.25f, 0.25f, 0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f, // Bottom Left //Top Right
+	-0.25f, 0.25f, 0.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f,  // Top Left 
+	-0.25f, -0.25f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Top Right //Bottom Left
+
+	//WING RIGHT (24)
+	// Positions          // Colors				// Texture Coords
+	-0.45f, -0.08f, 0.1f, 1.0f, 1.0f, 1.0f, 0.125f, 0.75f, // Top Right //Bottom Left
+	0.45f, -0.08f, 0.1f, 01.0f, 1.0f, 1.0f, 0.125f, 0.5f, // Bottom Right
+	0.45f, 0.08f, 0.1f, 01.0f, 01.0f, 1.0f, 0.0f, 0.5f, // Bottom Left //Top Right
+	0.45f, 0.08f, 0.1f, 01.0f, 01.0f, 1.0f, 0.0f, 0.5f, // Bottom Left //Top Right
+	-0.45f, 0.08f, 0.1f, 1.0f, 1.0f, 01.0f, 0.0f, 0.75f,  // Top Left 
+	-0.45f, -0.08f, 0.1f, 1.0f, 01.0f, 01.0f, 0.125f, 0.75f, // Top Right //Bottom Left //143
+
+
+};
+
+glm::vec3 tempColourToDelete[] = { glm::vec3(1.0f, 0.0f, 0.5f), glm::vec3(1.0f, 1.0f, 0.5f) };
+
+GLfloat tempColourToDelete2[] = { 1.0f, 0.0f, 0.5f, 1.0f, 0.0f, 0.5f, 1.0f, 0.0f, 0.5f, 1.0f, 0.0f, 0.5f, 1.0f, 0.0f, 0.5f, 1.0f, 0.0f, 0.5f };
+
+//TO IMPLEMENT TWO BELOW
+GLfloat objectVertices[] = {
+	// Positions          // Colors				// Texture Coords
+	-1.500f, -1.25f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, // Top Right //Bottom Left
+	1.505f, -1.25f, 0.0f, 0.5f, 0.5f, 0.5f, 1.0f, 0.0f, // Bottom Right
+	1.505f, 1.25f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Bottom Left
+	1.505f, 1.25f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, // Bottom Left
+	-1.500f, 1.25f, 0.0f, 0.5f, 0.5f, 0.5f, 0.0f, 1.0f,  // Top Left 
+	-1.500f, -1.25f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f, 1.0f, // Top Right //Bottom Left (minus 0.5)
+};
+
+GLfloat projectileVertices[] = {
+	// Positions          // Colors				// Texture Coords
+	-0.500f, -0.25f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // Top Right //Bottom Left
+	0.505f, -0.25f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Bottom Right
+	0.505f, 0.25f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // Bottom Left
+	0.505f, 0.25f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // Bottom Left
+	-0.500f, 0.25f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,  // Top Left 
+	-0.500f, -0.25f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // Top Right //Bottom Left (minus 0.5)
+};
+
+GLuint WIDTH = 800, HEIGHT = 600;
+glm::vec3 cubePositions[] = {
+	glm::vec3(0.0f, 0.0f, 0.0f), 
+	glm::vec3(0.0f, 0.0f, 0.0f), //wings
+	glm::vec3(0.0f, 0.0f, 0.0f),
+	glm::vec3(-1.5f, -2.2f, 0.0f),
+	glm::vec3(-3.8f, -2.0f, 0.0f),
+	glm::vec3(2.4f, -0.4f, 0.0f),
+	glm::vec3(-1.7f, 3.0f, 0.0f),
+	glm::vec3(0.0f, -5.0f, 0.0f), 
+	glm::vec3(0.0f, -5.0f, 0.0f), // (temp thing for the x, y of the calculation thing)
+	glm::vec3(1.5f, 0.2f, 0.0f),
+	glm::vec3(-1.3f, 1.0f, 0.0f)
+};
+
+glm::vec3 objectPositions[] = {
+	glm::vec3(0.0f, -5.4f, -0.0f)
+};
+
+glm::vec3 projectilePositions[] = {
+	glm::vec3(0.0f, 0.0f, 0.0f)
+};
+
+// Function prototypes
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode);
+void mouse_callback(GLFWwindow* window, double xpos, double ypos);
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+//void do_movement();
+void move_object();
+// Camera
+glm::vec3 cameraPos = glm::vec3(0.3f, 0.2f, 3.0f);
+glm::vec3 cameraFront = glm::vec3(0.0f, 0.0f, -1.0f);
+glm::vec3 cameraUp = glm::vec3(0.0f, 1.0f, 0.0f);
+glm::vec4 cameraUp4 = glm::vec4(0.0f, 1.0f, 0.0f, 0.0f);
+GLfloat yaw = -90.0f;	// Yaw is initialized to -90.0 degrees since a yaw of 0.0 results in a direction vector pointing to the right (due to how Eular angles work) so we initially rotate a bit to the left.
+GLfloat pitch = 0.0f;
+GLfloat lastX = WIDTH / 2.0;
+GLfloat lastY = HEIGHT / 2.0;
+GLfloat fov = 11.0f;
+//bool keys[1024];
+// Deltatime
+GLfloat deltaTime = 0.0f;	// Time between current frame and last frame
+GLfloat lastFrame = 0.0f;  	// Time of last frame
+GLfloat rotatePlaneAngle = 3.142f;
+GLfloat delayTime = 0.0f;
+
+//probs delete this and replace with something better
+bool hasRecoiled[1024];
+
+time_t timet;
+
+//before draw projectile
+bool shootProjectile[1024];
+bool drawProjectile[1024];
+bool initialClick[1024];
+glm::vec3 projectilePos[1024];
+//projectilePos[0] = cubePositions[1];
+//projectilePos[1] = cubePositions[1];
+GLfloat initRotationAngle[1024];
+GLfloat cumulative[1024];
+GLint localProjectileNumber = 1;
+glm::mat4 projectileModel[1024];
+GLfloat spray[1024];
+
+//////TEMPORARY FOR LINE CALCULATION
+glm::mat4 initialPlaneLocation;
+glm::vec3 projectileLine[1024];
+GLint hasInitLocation = 0;
+GLfloat calcDeltaTime;
+
+GLfloat sparkTime;
+
+Render::Render()
+{
+
+}
+
+Render::~Render()
+{
+}
+
+int loadedInitial = false;
+int Render::InitialLoad()
+{
+
+	return 0;
+}
+
+void Render::calculateGlobalDelta()
+{
+	globalDeltaTime += deltaTime;
+}
+
+GLfloat currentFrame = glfwGetTime();
+bool pauseGameS = false;
+void Render::Window(GLFWwindow* window, Shader ourShader)
+{
+
+	currentFrame = glfwGetTime();
+	// Calculate deltatime of current frame
+	deltaTime = currentFrame - lastFrame;
+	lastFrame = currentFrame;
+	// Swap the screen buffers
+	delayTime += currentFrame;
+
+	DrawObj(ourShader, window);
+	move_object();
+
+	//time(&timet);
+	//std::cout << currentFrame << "\n" << deltaTime << "\n";
+	glfwSwapBuffers(window);
+}
+
+
+
+Shader Render::CompileShader()
+{
+	// Build and compile our shader program
+	Shader shader("Shaders/shader.vs", "Shaders/shader.frag");
+	shader.Use();
+	// Camera/View transformation
+	glm::mat4 view;
+	view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+	//glUniformMatrix4fv(glGetUniformLocation(shader.Program, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	return shader;
+}
+
+GLuint VAO, VBO, EBO;
+GLuint VAO_obj, VBO_obj, EBO_obj;
+
+GLuint texture[5];
+GLuint texture2;
+const char* file;
+int textureNumber[] = { 0, 1 };
+
+GLfloat cameraSpeed = 0.001f;
+
+bool isInitialThing = false;
+
+bool hasCollided[1024];
+
+Render render;
+
+
+/*GLfloat objectVertices[] = {
+	// Positions          // Colors				// Texture Coords
+	-1.500f, -1.25f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // Top Right //Bottom Left
+	1.505f, -1.25f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f, // Bottom Right
+	1.505f, 1.25f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // Bottom Left
+	1.505f, 1.25f, -0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, // Bottom Left
+	-1.500f, 1.25f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,  // Top Left 
+	-1.500f, -1.25f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, // Top Right //Bottom Left (minus 0.5)
+};*/
+
+GLuint objectNumber = 0;
+
+//TO DELETE
+GLfloat tempDeltaCounter = 0.0f;
+
+GLfloat rotateSparkAngle = 0;
+
+//to delete probs
+Text text;
+GLfloat rotateObjectAngle;
+
+Collision collision;
+
+void Render::DrawObj(Shader ourShader, GLFWwindow* window)
+{
+	rotateObjectAngle = 1.0f;
+	cubePositions[8] = cubePositions[0];
+
+	//glm::mat2 temporaryMatrix = collision.DetectCollision(glm::vec3(objectVertices[0], objectVertices[1], objectVertices[2]), glm::vec3(objectVertices[8], objectVertices[9], objectVertices[10]), glm::vec3(objectVertices[16], objectVertices[17], objectVertices[18]), glm::vec3(objectVertices[32], objectVertices[33], objectVertices[34]), rotateObjectAngle, glm::vec3(objectPositions[0][0], objectPositions[0][1], objectPositions[0][2]), glm::vec3(cubePositions[8][0], cubePositions[8][1], cubePositions[8][2]), rotatePlaneAngle);
+
+	//std::cout << "\ncubepos[8][0]: " << cubePositions[8][0] << " " << cubePositions[1][0] << " \n";
+
+	//cubePositions[6][0] = temporaryMatrix[1][0];
+	//cubePositions[6][1] = temporaryMatrix[1][1];
+	//cubePositions[8][0] = temporaryMatrix[0][0];
+	//cubePositions[8][1] = temporaryMatrix[0][1];
+
+	for (int i = 0; i <= 5; i++)
+	{
+		if (hasCollided[i] = true)
+		{
+			glm::mat2 tempMat2 = collision.TempCollisionFunction(i, objectVertices, projectilePos, cubePositions[6], 0, objectPositions);
+			cubePositions[6][0] = tempMat2[0][0];
+			cubePositions[6][1] = tempMat2[1][0];
+			sparkTime = tempMat2[0][1];
+		}
+	}
+
+	glBindVertexArray(VAO_obj);
+
+	glBindBuffer(GL_ARRAY_BUFFER, VBO_obj);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(objectVertices), objectVertices, GL_STATIC_DRAW);
+
+	// Color attribute
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+
+	glEnableVertexAttribArray(1);
+
+
+	glBindVertexArray(0); // Unbind VAO
+
+	if (!loadedInitial)
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+		glGenVertexArrays(1, &VAO);
+		glGenBuffers(1, &VBO);
+
+		glBindVertexArray(VAO);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+		// Position attribute
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
+		glEnableVertexAttribArray(0);
+		// Color attribute
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+
+		glEnableVertexAttribArray(1);
+		// TexCoord attribute
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+		glEnableVertexAttribArray(2);
+
+		glBindVertexArray(0); // Unbind VAO
+
+		glGenVertexArrays(1, &VAO_obj);
+		glGenBuffers(1, &VBO_obj);
+
+		glBindVertexArray(VAO_obj);
+
+		glBindBuffer(GL_ARRAY_BUFFER, VBO_obj);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(objectVertices), objectVertices, GL_STATIC_DRAW);
+
+		// Position attribute
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
+		glEnableVertexAttribArray(0);
+		// Color attribute
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
+		glEnableVertexAttribArray(1);
+		// TexCoord attribute
+		glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
+		glEnableVertexAttribArray(2);
+
+		glBindVertexArray(0); // Unbind VAO
+
+		// ====================
+		// Texture 1 [body]
+		// ====================
+		glGenTextures(1, &texture[0]);
+
+		glBindTexture(GL_TEXTURE_2D, texture[0]); // All upcoming GL_TEXTURE_2D operations now have effect on our texture object
+		// Set our texture parameters
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		// Set texture filtering
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		int width, height;
+		unsigned char* image = SOIL_load_image("body_main.png", &width, &height, 0, SOIL_LOAD_RGBA);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		SOIL_free_image_data(image);
+		glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.	
+
+
+
+		// ====================
+		// Texture 2 [wing]
+		// ====================
+		glGenTextures(1, &texture[1]);
+
+		glBindTexture(GL_TEXTURE_2D, texture[1]); // All upcoming GL_TEXTURE_2D operations now have effect on our texture object
+		// Set our texture parameters
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		// Set texture filtering
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		image = SOIL_load_image("wing_main.png", &width, &height, 0, SOIL_LOAD_RGBA);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		SOIL_free_image_data(image);
+		glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
+
+		// ====================
+		// Texture 3 [spark]
+		// ====================
+		glGenTextures(1, &texture[2]);
+
+		glBindTexture(GL_TEXTURE_2D, texture[2]); // All upcoming GL_TEXTURE_2D operations now have effect on our texture object
+		// Set our texture parameters
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		// Set texture filtering
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		image = SOIL_load_image("object_temp.png", &width, &height, 0, SOIL_LOAD_RGBA);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		SOIL_free_image_data(image);
+		glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
+
+		// ====================
+		// Texture 4 [projectiles]
+		// ====================
+		glGenTextures(1, &texture[3]);
+
+		glBindTexture(GL_TEXTURE_2D, texture[3]); // All upcoming GL_TEXTURE_2D operations now have effect on our texture object
+		// Set our texture parameters
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		// Set texture filtering
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		image = SOIL_load_image("projectile_bullet_temp4.png", &width, &height, 0, SOIL_LOAD_RGBA);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		SOIL_free_image_data(image);
+		glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
+
+		// ====================
+		// Texture 5 [objecttemp]
+		// ====================
+		glGenTextures(1, &texture[4]);
+
+		glBindTexture(GL_TEXTURE_2D, texture[4]); // All upcoming GL_TEXTURE_2D operations now have effect on our texture object
+		// Set our texture parameters
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	// Set texture wrapping to GL_REPEAT
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		// Set texture filtering
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		image = SOIL_load_image("object_temp2.png", &width, &height, 0, SOIL_LOAD_RGBA);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		SOIL_free_image_data(image);
+		glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
+
+
+		loadedInitial = true;
+	}
+	
+	
+
+	if (globalDeltaTime >= 0.0001f)
+	{
+		//rotateObjectAngle = 1.0f;;
+		//TRYING TO GET THE OBJECT FACE PLAYER
+		if (tempDeltaCounter >= 0.0f)
+		{
+			GLfloat distA, distB, distC, distAngle;
+			/*
+			std::cout << "ObjectPosition[0][0]: " << objectPositions[0][0] << "\n";
+			std::cout << "ObjectPosition[0][1]: " << objectPositions[0][1] << "\n";
+			std::cout << "CubePosition[0][0]: " << cubePositions[0][0] << "\n";
+			std::cout << "CubePosition[0][1]: " << cubePositions[0][1] << "\n";
+			*/
+			//distA = sqrt(pow((0 - objectPositions[0][0]), 2.0f) + pow((0 - objectPositions[0][1]), 2.0f));
+			//distB = sqrt(pow((0 - cubePositions[0][0]), 2.0f) + pow((0 - cubePositions[0][1]), 2.0f));
+			//distC = sqrt(pow((objectPositions[0][0] - cubePositions[0][0]), 2.0f) + pow((objectPositions[0][1] - cubePositions[0][1]), 2.0f));
+
+			distA = sqrt(pow((objectPositions[0][0] - 0), 2.0f) + pow((objectPositions[0][1] - 0), 2.0f));
+			distB = sqrt(pow((cubePositions[0][0] - 0), 2.0f) + pow((cubePositions[0][1] -0.5f - 0), 2.0f));
+			distC = sqrt(pow((cubePositions[0][0] - objectPositions[0][0]), 2.0f) + pow((cubePositions[0][1] - 0.5f - objectPositions[0][1]), 2.0f));
+
+			distAngle = (pow(distA, 2.0f) + pow(distC, 2.0f) - pow(distB, 2.0f)) / (2 * distA*distC);
+
+			/*
+			std::cout << "Dist A: " << distA << "\n";
+			std::cout << "Dist B: " << distB << "\n";
+			std::cout << "Dist C: " << distC << "\n";
+			*/
+
+			if (distAngle < 0.0f)
+			{
+				distAngle *= -1;
+			}
+
+			//distAngle = 1.0f + distAngle;
+
+			//std::cout << "Dist Angle: " << distAngle << "\n";
+			/*
+			if (cubePositions[0][0] < objectPositions[0][0] && cubePositions[0][1] >= objectPositions[0][1]) //bottom right
+			{
+				//if (distAngle <= 0.754f)
+				
+				////////////////////rotateObjectAngle = (1.0f - distAngle)*1.57;
+				rotateObjectAngle = (1.0f - distAngle)*1.57;
+				//else
+				//	rotateObjectAngle = -0.764f - distAngle;
+
+				//std::cout << "Final Angle(1): " << rotateObjectAngle << "\n";
+			}
+			else if (cubePositions[0][0] > objectPositions[0][0] && cubePositions[0][1] > objectPositions[0][1]) //bottom left 
+			{
+				//if (distAngle >= 0.754f)
+				////////////////////rotateObjectAngle = (1.0f + distAngle)*1.57 + 3.14;
+				rotateObjectAngle = 0 - (1.0f - distAngle)*1.57;
+				//else
+				//	rotateObjectAngle = 0.764f + distAngle - 2.0f;
+				//std::cout << "Final Angle(2): " << rotateObjectAngle << "\n";
+			}
+			else if (cubePositions[0][0] > objectPositions[0][0] && cubePositions[0][1] <= objectPositions[0][1]) //top left
+			{
+				/////////////////////////rotateObjectAngle = (1.0f - distAngle)*1.57 + 3.14;
+				rotateObjectAngle = 3.142 + (1.0f - distAngle)*1.57;
+				//std::cout << "Final Angle(3): " << rotateObjectAngle << "\n";
+			}
+			else if (cubePositions[0][0] < objectPositions[0][0] && cubePositions[0][1] < objectPositions[0][1]) //top right
+			{
+				///////////////////////////rotateObjectAngle = (1.0f + distAngle)*1.57;
+				rotateObjectAngle = 3.142 - (1.0f - distAngle)*1.57;
+				//std::cout << "Final Angle(4): " << rotateObjectAngle << "\n";
+			}
+			else if (cubePositions[0][0] == objectPositions[0][0])
+			{
+				rotateObjectAngle = 1.0f;
+				std::cout << "LITTLE BIT IM LOOKING FOR (2)\n";
+			}
+			else
+			{
+				std::cout << "LITTLE BIT IM LOOKING FOR (1)\n";
+			}*/
+			
+			
+
+			//rotateObjectAngle = 1.57f;
+
+			//tempDeltaCounter = 0;
+			
+		}
+		tempDeltaCounter += deltaTime;
+
+		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		
+		// Camera/View transformation
+		glm::mat4 view;
+		view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+		//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+		glm::mat4 projection;
+		projection = glm::perspective(11.0f, (GLfloat)WIDTH / (GLfloat)HEIGHT, 0.1f, 100.0f);
+		GLint modelLoc = glGetUniformLocation(ourShader.Program, "model");
+		GLint viewLoc = glGetUniformLocation(ourShader.Program, "view");
+		GLint projLoc = glGetUniformLocation(ourShader.Program, "projection");
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		// Note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+		//text.drawText("abbbababaaa abg", ourShader, cameraUp, cameraSpeed, deltaTime, fov, cubePositions[0]);
+
+		view;
+		view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+		//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+		projection;
+		projection = glm::perspective(fov, (GLfloat)WIDTH / (GLfloat)HEIGHT, 0.1f, 100.0f);
+		
+
+		//projection = glm::ortho(0.0f, (float)WIDTH, (float)HEIGHT, 0.0f, -1.0f, 1.0f);
+		// Get their uniform location
+		 modelLoc = glGetUniformLocation(ourShader.Program, "model");
+		viewLoc = glGetUniformLocation(ourShader.Program, "view");
+		projLoc = glGetUniformLocation(ourShader.Program, "projection");
+		// Pass the matrices to the shaderco
+		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+		// Note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
+		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+		//text.drawText("ababbaabhello", ourShader, cameraUp, cameraSpeed, deltaTime, fov, cubePositions[0]);
+
+		glBindVertexArray(VAO_obj);
+
+		//FIRST OBJECT
+		glm::mat4 objectModel[1];
+
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture[4]);
+		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
+
+		objectModel[0] = glm::translate(objectModel[0], objectPositions[0]);
+		objectModel[0] *= glm::mat4(cos(rotateObjectAngle), sin(rotateObjectAngle), 0.0f, 0.0f, -sin(rotateObjectAngle), cos(rotateObjectAngle), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+		
+		//std::cout << "Object Model [0][0]: " << objectModel[0][0][0] << "Object Model [0][0]: " << objectModel[0][0][1] << "Object Model [0][0]: " << objectModel[0][1][2] << "\n";
+		
+		//std::cout << std::to_string(objectNumber) + " ";
+		//model[0] = glm::rotate(model[0], rotatePlaneAngle, glm::vec3(0.0f, 0.0f, 1.0f));
+
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(objectModel[0]));
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+
+		//std::cout << cubePositions[0][0] << cubePositions[0][1] << "\n";
+		glBindVertexArray(0);
+
+		glBindVertexArray(VAO);
+
+		glm::mat4 model[6];
+
+		//to move back to below
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture[2]);
+		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
+
+		model[2] = glm::translate(model[2], cubePositions[6]);
+		rotateSparkAngle = rotateObjectAngle;
+		model[2] *= glm::mat4(cos(rotateSparkAngle), sin(rotateSparkAngle), 0.0f, 0.0f, -sin(rotateSparkAngle), cos(rotateSparkAngle), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+		//std::cout << std::to_string(objectNumber) + " ";
+		//model[0] = glm::rotate(model[0], rotatePlaneAngle, glm::vec3(0.0f, 0.0f, 1.0f));
+
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model[2]));
+		glDrawArrays(GL_TRIANGLES, 18, 6);
+		//////////////////// MOVE ABOVE BACK BELOW
+
+
+	//Wing LEFT
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texture[1]);
+		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 1);
+
+		glm::vec3 tempPos = cubePositions[0];
+		tempPos += glm::vec3(-0.5f, 0.2f, 0.0f) * glm::mat3(cos(rotatePlaneAngle), -sin(rotatePlaneAngle), 0.0f, sin(rotatePlaneAngle), cos(rotatePlaneAngle), 0.0f, 0.0f, 0.0f, 1.0f);
+
+		model[1] = glm::translate(model[1], tempPos);
+		//model[1] += glm::mat4(1.0f, 0.0f, 0.0f, cubePositions[1][0], 0.0f, 1.0f, 0.0f, cubePositions[1][1], 0.0f, 0.0f, 1.0f, cubePositions[1][2], 0.0f, 0.0f, 0.0f, 1.0f);
+		//std::cout << std::to_string(objectNumber) + " ";
+		//model[1] = glm::rotate(model[1], rotatePlaneAngle, glm::vec3(0.0f, 0.0f, 2.0f));
+		if (cameraSpeed > 0.0f)
+		{
+			//glm::vec3 temp = cubePositions[1];
+			//cubePositions[1] = model[1] * glm::mat3(cos(rotatePlaneAngle), -sin(rotatePlaneAngle), 0.0f, sin(rotatePlaneAngle), cos(rotatePlaneAngle), 0.0f, 0.0f, 0.0f, 1.0f);
+
+
+			model[1] *= cameraSpeed * glm::mat4(cos(rotatePlaneAngle), sin(rotatePlaneAngle), 0.0f, 0.0f, -sin(rotatePlaneAngle), cos(rotatePlaneAngle), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f) * deltaTime;
+
+			//cubePositions[1] = temp;
+		}
+
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model[1]));
+		glDrawArrays(GL_TRIANGLES, 12, 6);
+
+	//Wing RIGHT
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texture[1]);
+		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 1);
+
+		tempPos = cubePositions[0];
+		tempPos += glm::vec3(0.5f, 0.2f, 0.0f) * glm::mat3(cos(rotatePlaneAngle), -sin(rotatePlaneAngle), 0.0f, sin(rotatePlaneAngle), cos(rotatePlaneAngle), 0.0f, 0.0f, 0.0f, 1.0f);
+
+		model[4] = glm::translate(model[4], tempPos);
+		//model[1] += glm::mat4(1.0f, 0.0f, 0.0f, cubePositions[1][0], 0.0f, 1.0f, 0.0f, cubePositions[1][1], 0.0f, 0.0f, 1.0f, cubePositions[1][2], 0.0f, 0.0f, 0.0f, 1.0f);
+		//std::cout << std::to_string(objectNumber) + " ";
+		//model[1] = glm::rotate(model[1], rotatePlaneAngle, glm::vec3(0.0f, 0.0f, 2.0f));
+		if (cameraSpeed > 0.0f)
+		{
+			//glm::vec3 temp = cubePositions[1];
+			//cubePositions[1] = model[1] * glm::mat3(cos(rotatePlaneAngle), -sin(rotatePlaneAngle), 0.0f, sin(rotatePlaneAngle), cos(rotatePlaneAngle), 0.0f, 0.0f, 0.0f, 1.0f);
+
+
+			model[4] *= cameraSpeed * glm::mat4(cos(rotatePlaneAngle), sin(rotatePlaneAngle), 0.0f, 0.0f, -sin(rotatePlaneAngle), cos(rotatePlaneAngle), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f) * deltaTime;
+
+			//cubePositions[1] = temp;
+		}
+
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model[4]));
+		glDrawArrays(GL_TRIANGLES, 24, 6);
+
+
+	//SOMETHING ELSE
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture[0]);
+		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
+
+		model[0] = glm::translate(model[0], cubePositions[0]);
+		//std::cout << std::to_string(objectNumber) + " ";
+		//model[0] = glm::rotate(model[0], rotatePlaneAngle, glm::vec3(0.0f, 0.0f, 1.0f));
+		if (cameraSpeed > 0.0f)
+			model[0] *= cameraSpeed * glm::mat4(cos(rotatePlaneAngle), sin(rotatePlaneAngle), 0.0f, 0.0f, -sin(rotatePlaneAngle), cos(rotatePlaneAngle), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f) * deltaTime;
+
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model[0]));
+		glDrawArrays(GL_TRIANGLES, 6, 6);
+
+	//SOMETHING ELSE
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texture[3]);
+		glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
+
+		model[5] = glm::translate(model[5], cubePositions[8]);
+		//std::cout << std::to_string(objectNumber) + " ";
+		//model[0] = glm::rotate(model[0], rotatePlaneAngle, glm::vec3(0.0f, 0.0f, 1.0f));
+		if (cameraSpeed > 0.0f)
+			model[5] *= cameraSpeed * glm::mat4(cos(rotatePlaneAngle), sin(rotatePlaneAngle), 0.0f, 0.0f, -sin(rotatePlaneAngle), cos(rotatePlaneAngle), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f) * deltaTime;
+
+		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model[5]));
+		glDrawArrays(GL_TRIANGLES, 6, 6);
+
+
+
+
+//MOVE SPARK BACK HERE
+
+
+		if (sparkTime <= 0.05f)
+			sparkTime += deltaTime;
+		else
+			cubePositions[6][0] = -1000.0f;
+
+		for (int i = 0; i <= 1023; i++)
+		{
+			DrawProjectile(model[3], ourShader, modelLoc, i, model[1]);
+			//std::cout << i << "\n";
+		}
+
+	}	
+
+}
+
+bool isSprayed[1024];
+
+GLfloat updateCollisionTime = 0;
+
+void Render::DrawProjectile(glm::mat4 model, Shader ourShader, GLint modelLoc, GLint tempVC, glm::mat4 planePosModel)//GLFWwindow* window, GLfloat rotationAngle, GLfloat deltaTime, glm::vec3 position, GLfloat projectileVertices[])
+{
+
+
+
+	//bottomLeft[5] = 1.0f;
+	//std::cout << tempDeltaCounter << "\n";
+
+	if (tempDeltaCounter >= 1.5f)
+	{
+		//std::cout << "y = " << obj_m << "x + " << obj_c << "   ,   y = " << proj_m << "x + " << proj_c << "\n" << "tempcalcposy: " << tempCalcPosY;
+
+
+
+		//std::cout << bottomLeft[0] << " " << objectHeight + objectWidth - objectPositions[0][0] << " " << topRight[0] << " " << topLeft[0] << " " << objectHeight << " " << objectWidth << "\n";
+		
+		//std::cout << "\n240 X: " << bottomLeft[0] << " " << cubePositions[0][0] << "\n";
+		//std::cout << "241 Y: " << bottomLeft[1] << " " << cubePositions[0][1] << " " << "\n";
+
+		//std::cout << "Bottom left[0]: " << bottomLeft[0][0] << " BottomLeft[1]: " << bottomLeft[1][1] << " TopLeft[0]: " << topLeft[0][0] << " TopLeft[1]: " << topLeft[1][1] << "n";
+		//std::cout << "Plane pos x: " << cubePositions[0][0] << " y: " << cubePositions[0][1] << "\n";
+		//std::cout << "Gradient: " << obj_m << "\n";
+		//std::cout << "f(x) = " << obj_m << "x + " << obj_c << "\n";
+
+
+		tempDeltaCounter = 0.0f;
+	}
+	
+
+
+	projectileModel[tempVC] = model;
+	//projectileModel[localProjectileNumber] = model; 
+	////////////////PROJECTILE TEST
+
+	//std::cout << std::to_string(objectNumber) + " ";
+	//model[0] = glm::rotate(model[0], rotatePlaneAngle, glm::vec3(0.0f, 0.0f, 1.0f));
+	
+	if (updateCollisionTime >= 0.2f)
+	{
+		for (int i = 0; i <= 1023; i++)
+		{
+			if (shootProjectile[i])
+			{
+				//TempCollisionFunction(i);
+				glm::mat2 tempMat2 = collision.TempCollisionFunction(i, objectVertices, projectilePos, cubePositions[6], 0, objectPositions);
+			}
+		}
+		updateCollisionTime = 0;
+	}
+	updateCollisionTime += deltaTime;
+
+		if (shootProjectile[tempVC])
+		{
+			//std::cout << "shoot proj: " << shootProjectile[tempVC] << " tempvc: " << tempVC << "\n";
+			glActiveTexture(GL_TEXTURE0);
+			glBindTexture(GL_TEXTURE_2D, texture[3]);
+			glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
+			//TempCollisionFunction(localProjectileNumber);
+			if (!initialClick[tempVC])
+			{				
+				isSprayed[tempVC] = false;
+				initRotationAngle[tempVC] = rotatePlaneAngle;
+				projectilePos[tempVC] = cubePositions[1];
+				//projectilePos[tempVC] *= glm::mat3(1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+
+				if (tempVC % 2 == 0)
+					projectilePos[tempVC] += glm::vec3(0.5f, 0.0f, 0.0f) * glm::mat3(cos(rotatePlaneAngle), -sin(rotatePlaneAngle), 0.0f, sin(rotatePlaneAngle), cos(rotatePlaneAngle), 0.0f, 0.0f, 0.0f, 1.0f);
+				else
+					projectilePos[tempVC] += glm::vec3(-0.5f, 0.0f, 0.0f) * glm::mat3(cos(rotatePlaneAngle), -sin(rotatePlaneAngle), 0.0f, sin(rotatePlaneAngle), cos(rotatePlaneAngle), 0.0f, 0.0f, 0.0f, 1.0f);
+
+				//projectileModel[tempVC] = model;
+				initialClick[tempVC] = true;
+				cumulative[tempVC] = 0.0f;
+				projectileModel[tempVC] = model;
+				GLfloat temporaryRandom = (rand() % 10);
+				GLfloat temporaryRandom2 = (rand() % 2);
+				if (temporaryRandom2 == 0)
+					spray[tempVC] = temporaryRandom / 150;
+				else if (temporaryRandom2 == 1)
+					spray[tempVC] = -temporaryRandom / 150;
+				//std::cout << "tempVC init: " << tempVC << "\n";
+			}
+			else if (initialClick[tempVC])// && projectilePos[tempVC] != cubePositions[1])
+			{
+				if (!isSprayed[tempVC])
+				{
+					//initRotationAngle[tempVC] += 10; remember this cool effect
+					//initRotationAngle[tempVC] += 0.01;
+					initRotationAngle[tempVC] += spray[tempVC];
+
+					isSprayed[tempVC] = true;
+				}
+				else if (isSprayed[tempVC])
+				{
+
+				}
+				
+				
+				projectilePos[tempVC] += 10.0f * cameraUp *glm::mat3(cos(initRotationAngle[tempVC]), -sin(initRotationAngle[tempVC]), 0.3f, sin(initRotationAngle[tempVC]), cos(initRotationAngle[tempVC]), -0.25f, 0, 0, 1) * deltaTime;//* glm::mat3(1.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f) 
+				
+				projectileModel[tempVC] = glm::translate(projectileModel[tempVC], projectilePos[tempVC]);
+
+				projectileModel[tempVC] *= cameraSpeed * glm::mat4(cos(initRotationAngle[tempVC]), sin(initRotationAngle[tempVC]), 0.0f, 0.0f, -sin(initRotationAngle[tempVC]), cos(initRotationAngle[tempVC]), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f) * deltaTime;// *glm::mat4(1.0f, 0.0f, 0.0f, 0.0f, 0.0f, -10.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f);
+				//std::cout << projectilePos[localProjectileNumber][0] << " " << projectilePos[localProjectileNumber][1] << "\n";
+
+			}
+
+			cumulative[tempVC] += deltaTime;
+
+			for (int i = 0; i <= 1023; i++)
+			{
+				if (drawProjectile[i])
+				{
+					glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(projectileModel[i]));
+					glDrawArrays(GL_TRIANGLES, 0, 6);
+				}
+			}
+			
+			glBindVertexArray(0);
+
+			//std::cout << "0 X: " << projectilePos[0][0] << ". 1 X: " << projectilePos[1][0] << " Drawing:" << cumulative[tempVC] << "\n";
+
+			if (cumulative[tempVC] > 2.0f)
+			{
+				initialClick[tempVC] = false;
+				shootProjectile[tempVC] = false;
+				drawProjectile[tempVC] = false;
+			}
+
+			//std::cout << initRotationAngle << " " << localProjectileNumber << " " << "\n";
+
+			//std::cout << i << " " << projectilePos[i][1] << "\n";
+		}
+
+		initialPlaneLocation = planePosModel;
+
+		calcDeltaTime += deltaTime;
+		//std::cout << deltaTime;
+		///////////////////////TEMPORARY LINE CALCULATION - TO MOVE
+		if (hasInitLocation == 0 && calcDeltaTime >= 2000.0f)
+		{
+			initialPlaneLocation = planePosModel;
+			//std::cout << initialPlaneLocation[0][0] * 10000 << " " << initialPlaneLocation[0][1] * 10000 << " " << initialPlaneLocation[1][0] * 10000 << " " << initialPlaneLocation[1][1] * 10000 << " " << "\n";
+			
+
+			calcDeltaTime = 0;
+		}
+		else if (hasInitLocation == 1 && calcDeltaTime >= 2000)
+		{
+			glm::mat4 bulletLocation = projectileModel[0];
+			
+			//std::cout << "Plane: " << initialPlaneLocation[0][0] << " " << initialPlaneLocation[0][1] << " " << initialPlaneLocation[1][0] << " " << initialPlaneLocation[1][1] << " " << "\n";
+			//std::cout << "Bullet: " << bulletLocation[0][0] << " " << bulletLocation[0][1] << " " << bulletLocation[1][0] << " " << bulletLocation[1][1] << " " << "\n";
+			//std::cout << "Object: " << objectPositions[0][0] << " " << objectPositions[0][1] << " " << objectPositions[1][0] << " " << objectPositions[1][1] << " " << "\n";
+			//maths stuff
+
+			/*
+			if (projectileModel[0][0][0] != 1)
+			{
+				std::cout << "Bullet: " << projectileModel[0][0][0] << " " << projectileModel[0][0][1] << " " << projectileModel[0][1][0] << " " << projectileModel[0][1][1] << " " << "\n";
+				std::cout << "Bullet position: " << projectilePos[0][0] << " " << projectilePos[0][1] << "\n";
+			}
+			*/
+			
+
+			//hasInitLocation = 2;
+		}
+		else if (hasInitLocation == 2 && calcDeltaTime >= 2000)
+		{
+
+		}
+
+		
+
+	/*for (int i = 0; i <= 1; i++)
+	{
+		if (shootProjectile && cumulative[i] <= 1.0f)
+		{
+			cumulative[i] += deltaTime;
+			if (!initialClick[localProjectileNumber])
+			{
+				glActiveTexture(GL_TEXTURE0);
+				glBindTexture(GL_TEXTURE_2D, texture[i]);
+				glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 0);
+				initRotationAngle[i] = rotatePlaneAngle;
+				projectilePos[localProjectileNumber] = cubePositions[1];
+				initialClick[localProjectileNumber] = true;
+			}
+			else if (initialClick && projectilePos[i] != cubePositions[1])
+			{
+				projectilePos[i] += 4.0f * cameraUp *glm::mat3(cos(initRotationAngle[i]), -sin(initRotationAngle[i]), 0.3f, sin(initRotationAngle[i]), cos(initRotationAngle[i]), -0.25f, 0, 0, 1) * deltaTime;
+				projectileModel[i] = glm::translate(projectileModel[i], projectilePos[i]);
+				projectileModel[i] *= cameraSpeed * glm::mat4(cos(initRotationAngle[i]), sin(initRotationAngle[i]), 0.0f, 0.0f, -sin(initRotationAngle[i]), cos(initRotationAngle[i]), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f) * deltaTime;
+				//std::cout << projectilePos[localProjectileNumber][0] << " " << projectilePos[localProjectileNumber][1] << "\n";
+			}
+
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(projectileModel[i]));
+			glDrawArrays(GL_TRIANGLES, 0, 6);
+
+			glBindVertexArray(0);
+			std::cout << initRotationAngle << " " << localProjectileNumber << " " << i << "\n";
+
+			//std::cout << i << " " << projectilePos[i][1] << "\n";
+		}
+	}*/
+
+
+	/*
+	//glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// Camera/View transformation
+	glm::mat4 view;
+	view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
+	//view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+	glm::mat4 projection;
+	projection = glm::perspective(fov, (GLfloat)WIDTH / (GLfloat)HEIGHT, 0.1f, 100.0f);
+
+	//projection = glm::ortho(0.0f, (float)WIDTH, (float)HEIGHT, 0.0f, -1.0f, 1.0f);
+	// Get their uniform location
+	GLint modelLoc = glGetUniformLocation(ourShader.Program, "model");
+	GLint viewLoc = glGetUniformLocation(ourShader.Program, "view");
+	GLint projLoc = glGetUniformLocation(ourShader.Program, "projection");
+	// Pass the matrices to the shaderco
+	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+	// Note: currently we set the projection matrix each frame, but since the projection matrix rarely changes it's often best practice to set it outside the main loop only once.
+	glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
+
+	glBindVertexArray(VAO);
+
+	glm::mat4 model;
+
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, texture[3]);
+	glUniform1i(glGetUniformLocation(ourShader.Program, "ourTexture1"), 1);
+
+	model = glm::translate(model, position);
+
+	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+
+	glBindVertexArray(0);*/
+}
+
+void Render::draw(GLuint texture, float posX, float posY, float sizeX, float sizeY) 
+{
+
+	/*glBegin(GL_QUADS); 
+	glBindTexture(GL_TEXTURE_2D, texture); 
+	glTexCoord2f(sizeX, sizeY); 
+	glVertex3f(posX, posY, 0.0f); 
+	glTexCoord2f(0.025f + sizeX, sizeY); 
+	glVertex3f(posX + 16.0f, posY, 0.0f); 
+	glTexCoord2f(0.025f + sizeX, 0.025f + sizeY); 
+	glVertex3f(posX + 16.0f, posY + 16.0f, 0.0f); 
+	glTexCoord2f(sizeX, 0.025f + sizeY); 
+	glVertex3f(posX, posY + 16.0f, 0.0f); 
+	glEnd();
+	std::cout << "hello";*/
+}
+MainGame mainGameT;
+// Is called whenever a key is pressed/released via GLFW
+/*
+void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode)
+{
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+	{
+		
+		//mainGameT.pauseGameT();
+		//glfwSetWindowShouldClose(window, GL_TRUE);
+		if (pauseGameS)
+			pauseGameS = false;
+		else
+			pauseGameS = true;
+	}
+		
+	
+
+
+	if (key >= 0 && key < 1024)
+	{
+		if (action == GLFW_PRESS)
+		{
+			keys[key] = true;
+		}
+		else if (action == GLFW_RELEASE)
+			keys[key] = false;
+	}
+	if (key == GLFW_KEY_UP && action == GLFW_PRESS && fov <= 11.6)
+	{
+		fov += 0.2f;
+	}
+	if (key == GLFW_KEY_DOWN && action == GLFW_PRESS && fov >= 9.9)
+	{
+		fov -= 0.2f;
+	}
+}
+
+*/
+void move_object()
+{
+	cubePositions[0] += cameraSpeed * cameraUp *glm::mat3(cos(rotatePlaneAngle), -sin(rotatePlaneAngle), 0.3f, sin(rotatePlaneAngle), cos(rotatePlaneAngle), -0.25f, 0, 0, 1) * deltaTime;
+	cubePositions[1] += cameraSpeed * cameraUp *glm::mat3(cos(rotatePlaneAngle), -sin(rotatePlaneAngle), 0.3f, sin(rotatePlaneAngle), cos(rotatePlaneAngle), -0.25f, 0, 0, 1) * deltaTime;
+	//cubePositions[1] += cameraSpeed * cameraUp;
+	cameraPos += cameraSpeed * cameraUp * glm::mat3(cos(rotatePlaneAngle), -sin(rotatePlaneAngle), 0.3f, sin(rotatePlaneAngle), cos(rotatePlaneAngle), -0.25f, 0, 0, 1) * deltaTime;
+
+	//(testing continuous level)
+	/*if (cubePositions[0][0] <= -10.0f)
+	{
+		cubePositions[0][0] += 20.0f;
+		cubePositions[1][0] += 20.0f;
+		for (int i = 0; i < 1024; i++)
+			projectilePos[i][0] += 20.0f;
+		cameraPos[0] += 20.0f;
+	}
+	std::cout << "POS: " << cubePositions[0][0] << "\n";*/
+}
+/*
+void do_movement()
+{
+	// Camera controls
+	//std::cout << "testmove";
+	
+	if (keys[GLFW_KEY_W])
+	{
+		//cameraPos += cameraSpeed * cameraUp;
+		//for (int i = 0; i == 6; i++)
+		//{
+		//cameraPos += cameraSpeed * cameraUp;
+		if (cameraSpeed <= 5.0f)
+		{
+			cameraSpeed += deltaTime;
+		}
+
+
+		//cubePositions[1] -= cameraSpeed * cameraUp;
+		//	std::cout << "works                       ";
+		//}
+		//std::cout << "testmove wW";
+			//std::cout << deltaTime;
+	}
+	if (keys[GLFW_KEY_S])
+	{
+		if (cameraSpeed >= 1.0f)
+		{
+			cameraSpeed -= deltaTime;
+		}
+
+		//cameraPos += cameraSpeed * cameraUp;
+		//for (int i = 0; i == 6; i++)
+		//{
+		//cameraPos += cameraSpeed * cameraUp;
+		//cubePositions[0] -= cameraSpeed * cameraUp *glm::mat3(cos(rotatePlaneAngle), -sin(rotatePlaneAngle), 0.3f, sin(rotatePlaneAngle), cos(rotatePlaneAngle), -0.25f, 0, 0, 1) * deltaTime;
+		//cubePositions[1] += cameraSpeed * cameraUp;
+		//cameraPos -= cameraSpeed * cameraUp * glm::mat3(cos(rotatePlaneAngle), -sin(rotatePlaneAngle), 0.3f, sin(rotatePlaneAngle), cos(rotatePlaneAngle), -0.25f, 0, 0, 1) * deltaTime;
+		//cubePositions[1] -= cameraSpeed * cameraUp;
+		//	std::cout << "works                       ";
+		//}
+		//std::cout << "testmove wW";
+	}
+	if (keys[GLFW_KEY_A])
+	{
+		//cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+		if (rotatePlaneAngle > 6.28)
+			rotatePlaneAngle = 0;
+
+		rotatePlaneAngle += 0.5f *deltaTime;
+		//std::cout << rotatePlaneAngle; std::cout<< "\n";
+
+	}
+	if (keys[GLFW_KEY_D])
+	{
+		//cameraPos -= glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+		if (rotatePlaneAngle < 0)
+			rotatePlaneAngle = 6.28;
+		rotatePlaneAngle -= 0.5f * deltaTime;
+		//std::cout << rotatePlaneAngle; std::cout << "\n";
+
+	}
+
+}
+
+bool firstMouse = true;
+void mouse_callback(GLFWwindow* window, double xpos, double ypos)
+{
+	if (firstMouse)
+	{
+		lastX = xpos;
+		lastY = ypos;
+		firstMouse = false;
+	}
+
+	GLfloat xoffset = xpos - lastX;
+	GLfloat yoffset = lastY - ypos; // Reversed since y-coordinates go from bottom to left
+	lastX = xpos;
+	lastY = ypos;
+
+	GLfloat sensitivity = 1.0f;	// Change this value to your liking
+	xoffset *= sensitivity;
+	yoffset *= sensitivity;
+
+	yaw += xoffset;
+	pitch += yoffset;
+
+	// Make sure that when pitch is out of bounds, screen doesn't get flipped
+	if (pitch > 89.0f)
+		pitch = 89.0f;
+	if (pitch < -89.0f)
+		pitch = -89.0f;
+
+	glm::vec3 front;
+	front.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+	front.y = sin(glm::radians(pitch));
+	front.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+	cameraFront = glm::normalize(front);
+}
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+{
+	if (fov >= 1.0f && fov <= 45.0f)
+		fov -= yoffset;
+	if (fov <= 1.0f)
+		fov = 1.0f;
+	if (fov >= 45.0f)
+		fov = 45.0f;
+}
+*/

@@ -1,0 +1,121 @@
+﻿Build started 19/09/2016 17:22:44.
+     1>Project "C:\Users\Tom\Documents\Visual Studio 2013\Projects\plane2Dshoot\plane2Dshoot\plane2Dshoot.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /sdl /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt Camera.cpp Collision.cpp KeyPress.cpp main.cpp MainGame.cpp Projectile.cpp Render.cpp Sound.cpp Text.cpp Turret.cpp
+         Turret.cpp
+         Text.cpp
+         Sound.cpp
+         Render.cpp
+     1>Render.cpp(188): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(189): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(297): warning C4244: 'initializing' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(302): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(388): warning C4101: 'y1' : unreferenced local variable
+     1>Render.cpp(388): warning C4101: 'c1' : unreferenced local variable
+     1>Render.cpp(388): warning C4101: 'm1' : unreferenced local variable
+     1>Render.cpp(388): warning C4101: 'temp' : unreferenced local variable
+     1>Render.cpp(388): warning C4101: 'c2' : unreferenced local variable
+     1>Render.cpp(388): warning C4101: 'm2' : unreferenced local variable
+     1>Render.cpp(388): warning C4101: 'x1' : unreferenced local variable
+     1>Render.cpp(762): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Render.cpp(1092): warning C4244: 'initializing' : conversion from 'int' to 'GLfloat', possible loss of data
+     1>Render.cpp(1123): warning C4244: '=' : conversion from 'int' to 'GLfloat', possible loss of data
+     1>Render.cpp(1130): warning C4244: '=' : conversion from 'int' to 'GLfloat', possible loss of data
+     1>Render.cpp(1138): warning C4244: '=' : conversion from 'int' to 'GLfloat', possible loss of data
+     1>Render.cpp(1139): warning C4305: '*=' : truncation from 'double' to 'GLfloat'
+     1>Render.cpp(1274): warning C4244: 'initializing' : conversion from 'int' to 'GLfloat', possible loss of data
+     1>Render.cpp(1282): warning C4244: '=' : conversion from 'int' to 'GLfloat', possible loss of data
+     1>Render.cpp(1356): warning C4244: 'initializing' : conversion from 'GLint' to 'GLfloat', possible loss of data
+     1>Render.cpp(1483): warning C4244: 'initializing' : conversion from 'int' to 'GLfloat', possible loss of data
+     1>Render.cpp(1484): warning C4244: 'initializing' : conversion from 'int' to 'GLfloat', possible loss of data
+         Projectile.cpp
+         MainGame.cpp
+         main.cpp
+         KeyPress.cpp
+     1>KeyPress.cpp(37): warning C4305: '=' : truncation from 'double' to 'GLfloat'
+     1>KeyPress.cpp(71): warning C4305: '=' : truncation from 'double' to 'GLfloat'
+         Collision.cpp
+     1>Collision.cpp(150): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Collision.cpp(172): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Collision.cpp(87): warning C4101: 'y1' : unreferenced local variable
+     1>Collision.cpp(87): warning C4101: 'c1' : unreferenced local variable
+     1>Collision.cpp(87): warning C4101: 'm1' : unreferenced local variable
+     1>Collision.cpp(87): warning C4101: 'temp' : unreferenced local variable
+     1>Collision.cpp(87): warning C4101: 'c2' : unreferenced local variable
+     1>Collision.cpp(87): warning C4101: 'm2' : unreferenced local variable
+     1>Collision.cpp(87): warning C4101: 'x1' : unreferenced local variable
+     1>Collision.cpp(212): warning C4244: '=' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>Collision.cpp(300): warning C4101: 'littleY' : unreferenced local variable
+     1>Collision.cpp(300): warning C4101: 'littleX' : unreferenced local variable
+         Camera.cpp
+         Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Tom\Documents\Visual Studio 2013\Projects\plane2Dshoot\x64\Debug\plane2Dshoot.exe" /INCREMENTAL /NOLOGO SOIL.lib glfw3.lib glew32s.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Tom\Documents\Visual Studio 2013\Projects\plane2Dshoot\x64\Debug\plane2Dshoot.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Tom\Documents\Visual Studio 2013\Projects\plane2Dshoot\x64\Debug\plane2Dshoot.lib" /MACHINE:X64 x64\Debug\Camera.obj
+         x64\Debug\Collision.obj
+         x64\Debug\KeyPress.obj
+         x64\Debug\main.obj
+         x64\Debug\MainGame.obj
+         x64\Debug\Projectile.obj
+         x64\Debug\Render.obj
+         x64\Debug\Sound.obj
+         x64\Debug\Text.obj
+         x64\Debug\Turret.obj
+     1>KeyPress.obj : error LNK2019: unresolved external symbol glfwPollEvents referenced in function "public: void __cdecl KeyPress::keyCallback(struct GLFWwindow *)" (?keyCallback@KeyPress@@QEAAXPEAUGLFWwindow@@@Z)
+     1>KeyPress.obj : error LNK2019: unresolved external symbol glfwSetKeyCallback referenced in function "public: void __cdecl KeyPress::keyCallback(struct GLFWwindow *)" (?keyCallback@KeyPress@@QEAAXPEAUGLFWwindow@@@Z)
+     1>MainGame.obj : error LNK2019: unresolved external symbol glewInit referenced in function "public: int __cdecl MainGame::run(void)" (?run@MainGame@@QEAAHXZ)
+     1>MainGame.obj : error LNK2019: unresolved external symbol glfwInit referenced in function "public: int __cdecl MainGame::run(void)" (?run@MainGame@@QEAAHXZ)
+     1>MainGame.obj : error LNK2019: unresolved external symbol glfwTerminate referenced in function "public: int __cdecl MainGame::run(void)" (?run@MainGame@@QEAAHXZ)
+     1>MainGame.obj : error LNK2019: unresolved external symbol glfwWindowHint referenced in function "public: int __cdecl MainGame::run(void)" (?run@MainGame@@QEAAHXZ)
+     1>MainGame.obj : error LNK2019: unresolved external symbol glfwCreateWindow referenced in function "public: int __cdecl MainGame::run(void)" (?run@MainGame@@QEAAHXZ)
+     1>MainGame.obj : error LNK2019: unresolved external symbol glfwWindowShouldClose referenced in function "public: int __cdecl MainGame::run(void)" (?run@MainGame@@QEAAHXZ)
+     1>MainGame.obj : error LNK2019: unresolved external symbol glfwGetFramebufferSize referenced in function "public: int __cdecl MainGame::run(void)" (?run@MainGame@@QEAAHXZ)
+     1>MainGame.obj : error LNK2019: unresolved external symbol glfwMakeContextCurrent referenced in function "public: int __cdecl MainGame::run(void)" (?run@MainGame@@QEAAHXZ)
+     1>MainGame.obj : error LNK2001: unresolved external symbol glewExperimental
+     1>Render.obj : error LNK2019: unresolved external symbol glfwGetTime referenced in function "public: void __cdecl Render::Window(struct GLFWwindow *,class Shader)" (?Window@Render@@QEAAXPEAUGLFWwindow@@VShader@@@Z)
+     1>Render.obj : error LNK2019: unresolved external symbol glfwSwapBuffers referenced in function "public: void __cdecl Render::Window(struct GLFWwindow *,class Shader)" (?Window@Render@@QEAAXPEAUGLFWwindow@@VShader@@@Z)
+     1>Render.obj : error LNK2019: unresolved external symbol SOIL_load_image referenced in function "public: void __cdecl Render::DrawObj(class Shader,struct GLFWwindow *)" (?DrawObj@Render@@QEAAXVShader@@PEAUGLFWwindow@@@Z)
+     1>Text.obj : error LNK2001: unresolved external symbol SOIL_load_image
+     1>Render.obj : error LNK2019: unresolved external symbol SOIL_free_image_data referenced in function "public: void __cdecl Render::DrawObj(class Shader,struct GLFWwindow *)" (?DrawObj@Render@@QEAAXVShader@@PEAUGLFWwindow@@@Z)
+     1>Text.obj : error LNK2001: unresolved external symbol SOIL_free_image_data
+     1>Render.obj : error LNK2001: unresolved external symbol __glewActiveTexture
+     1>Text.obj : error LNK2001: unresolved external symbol __glewActiveTexture
+     1>Render.obj : error LNK2001: unresolved external symbol __glewBindBuffer
+     1>Text.obj : error LNK2001: unresolved external symbol __glewBindBuffer
+     1>Render.obj : error LNK2001: unresolved external symbol __glewBufferData
+     1>Text.obj : error LNK2001: unresolved external symbol __glewBufferData
+     1>Render.obj : error LNK2001: unresolved external symbol __glewGenBuffers
+     1>Text.obj : error LNK2001: unresolved external symbol __glewGenBuffers
+     1>Render.obj : error LNK2001: unresolved external symbol __glewAttachShader
+     1>Render.obj : error LNK2001: unresolved external symbol __glewCompileShader
+     1>Render.obj : error LNK2001: unresolved external symbol __glewCreateProgram
+     1>Render.obj : error LNK2001: unresolved external symbol __glewCreateShader
+     1>Render.obj : error LNK2001: unresolved external symbol __glewDeleteShader
+     1>Render.obj : error LNK2001: unresolved external symbol __glewEnableVertexAttribArray
+     1>Text.obj : error LNK2001: unresolved external symbol __glewEnableVertexAttribArray
+     1>Render.obj : error LNK2001: unresolved external symbol __glewGetProgramInfoLog
+     1>Render.obj : error LNK2001: unresolved external symbol __glewGetProgramiv
+     1>Render.obj : error LNK2001: unresolved external symbol __glewGetShaderInfoLog
+     1>Render.obj : error LNK2001: unresolved external symbol __glewGetShaderiv
+     1>Render.obj : error LNK2001: unresolved external symbol __glewGetUniformLocation
+     1>Text.obj : error LNK2001: unresolved external symbol __glewGetUniformLocation
+     1>Render.obj : error LNK2001: unresolved external symbol __glewLinkProgram
+     1>Render.obj : error LNK2001: unresolved external symbol __glewShaderSource
+     1>Render.obj : error LNK2001: unresolved external symbol __glewUniform1i
+     1>Text.obj : error LNK2001: unresolved external symbol __glewUniform1i
+     1>Render.obj : error LNK2001: unresolved external symbol __glewUniformMatrix4fv
+     1>Text.obj : error LNK2001: unresolved external symbol __glewUniformMatrix4fv
+     1>Render.obj : error LNK2001: unresolved external symbol __glewUseProgram
+     1>Render.obj : error LNK2001: unresolved external symbol __glewVertexAttribPointer
+     1>Text.obj : error LNK2001: unresolved external symbol __glewVertexAttribPointer
+     1>Render.obj : error LNK2001: unresolved external symbol __glewGenerateMipmap
+     1>Text.obj : error LNK2001: unresolved external symbol __glewGenerateMipmap
+     1>Render.obj : error LNK2001: unresolved external symbol __glewBindVertexArray
+     1>Text.obj : error LNK2001: unresolved external symbol __glewBindVertexArray
+     1>Render.obj : error LNK2001: unresolved external symbol __glewGenVertexArrays
+     1>Text.obj : error LNK2001: unresolved external symbol __glewGenVertexArrays
+     1>C:\Users\Tom\Documents\Visual Studio 2013\Projects\plane2Dshoot\x64\Debug\plane2Dshoot.exe : fatal error LNK1120: 39 unresolved externals
+     1>Done Building Project "C:\Users\Tom\Documents\Visual Studio 2013\Projects\plane2Dshoot\plane2Dshoot\plane2Dshoot.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:05.58

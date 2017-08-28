@@ -1,0 +1,237 @@
+
+
+	//TEMPORARY FOR CALCULATION THE POINTS
+	/*
+	//bottomLeft = glm::vec3(objectWidth + objectPositions[0][0], objectHeight + objectPositions[0][1], objectVertices[2]);
+	//bottomLeft = glm::mat3(objectWidth + objectPositions[0][0], 0.0f, 0.0f, 0.0f, objectHeight + objectPositions[0][1], 0.0f, 0.0f, 0.0f, objectVertices[2]);
+	bottomLeft = glm::mat3(objectVertices[0] + objectPositions[0][0], 0.0f, 0.0f, 0.0f, objectVertices[1] + objectPositions[0][1], 0.0f, 0.0f, 0.0f, objectVertices[2]);
+	bottomRight = glm::mat3(-objectWidth + objectVertices[0], 0.0f, 0.0f, 0.0f, objectHeight + objectVertices[9], 0.0f, 0.0f, 0.0f, objectVertices[10]);
+	topRight = glm::mat3(-objectWidth + objectVertices[16], 0.0f, 0.0f, 0.0f, -objectHeight + objectVertices[17], 0.0f, 0.0f, 0.0f, objectVertices[18]);
+	//topLeft = glm::mat3(objectWidth + objectPositions[0][0], 0.0f, 0.0f, 0.0f, -objectHeight + objectPositions[0][0], 0.0f, 0.0f, 0.0f, objectVertices[33]);
+	topLeft = glm::mat3(objectVertices[32] + objectPositions[0][0], 0.0f, 0.0f, 0.0f, objectVertices[33] + objectPositions[0][1], 0.0f, 0.0f, 0.0f, objectVertices[2]);*/
+
+	//std::cout << objectVertices[0] + objectPositions[0][0] << "   " << objectVertices[32] + objectPositions[0][0] << "\n";
+
+	////bottomLeft *= glm::mat3(cos(rotateObjectAngle), sin(rotateObjectAngle), 0.0f, -sin(rotateObjectAngle), cos(rotateObjectAngle), 0.0f, 0.0f, 0.0f, 1.0f);
+//	topLeft *= glm::mat3(cos(rotateObjectAngle), sin(rotateObjectAngle), 0.0f, -sin(rotateObjectAngle), cos(rotateObjectAngle), 0.0f, 0.0f, 0.0f, 1.0f);
+
+	//std::cout << "\nBL" << bottomLeft[0][0] << " " << bottomLeft[0][1] << " " << bottomLeft[1][0] << " " << bottomLeft[1][1] << "\n";
+	//std::cout << "TL" << topLeft[0][0] << " " << topLeft[0][1] << " " << topLeft[1][0] << " " << topLeft[1][1] << "\n";
+	//std::cout << "CubePos X: " << cubePositions[0][0] << " CubePos Y: " << cubePositions[0][1] << "\n\n";
+
+	//obj_tempx = objectVertices[0];
+
+	topRight[0] = (objectVertices[0] * cos(rotateObjectAngle ) - objectVertices[1] * sin(rotateObjectAngle)) + objectPositions[0][0];
+	topRight[1] = (objectVertices[1] * cos(rotateObjectAngle ) + objectVertices[0] * sin(rotateObjectAngle)) + objectPositions[0][1];
+
+	bottomRight[0] = (objectVertices[32] * cos(rotateObjectAngle) - objectVertices[33] * sin(rotateObjectAngle)) + objectPositions[0][0];
+	bottomRight[1] = (objectVertices[33] * cos(rotateObjectAngle) + objectVertices[32] * sin(rotateObjectAngle)) + objectPositions[0][1];
+
+	bottomLeft[0] = (objectVertices[16] * cos(rotateObjectAngle) - objectVertices[17] * sin(rotateObjectAngle)) + objectPositions[0][0];
+	bottomLeft[1] = (objectVertices[17] * cos(rotateObjectAngle) + objectVertices[16] * sin(rotateObjectAngle)) + objectPositions[0][1];
+
+	topLeft[0] = (objectVertices[8] * cos(rotateObjectAngle) - objectVertices[9] * sin(rotateObjectAngle)) + objectPositions[0][0];
+	topLeft[1] = (objectVertices[9] * cos(rotateObjectAngle) + objectVertices[8] * sin(rotateObjectAngle)) + objectPositions[0][1];
+
+	/*
+	obj_y1 = topLeft[1];
+	obj_y2 = bottomLeft[1];
+	obj_x1 = topLeft[0];
+	obj_x2 = bottomLeft[0];
+	*/
+
+	obj_y2 = bottomRight[1];
+	obj_y1 = bottomLeft[1];
+	obj_x2 = bottomRight[0];
+	obj_x1 = bottomLeft[0];
+
+	//obj_x1 = bottomLeft[0][0];
+	//obj_x2 = topLeft[0][0];
+	//obj_y1 = bottomLeft[1][1];
+	//obj_y2 = topLeft[1][1];
+
+	//std::cout << bottomLeft[0][0] << "    " << topLeft[0][0] << "\n";
+
+	//m val
+	obj_m = (obj_y1 - obj_y2) / (obj_x1 - obj_x2);
+	obj_c = obj_y1 - (obj_x1 * obj_m);
+
+	GLfloat tempCalcPosX, tempCalcPosY;
+
+	cubePositions[8][0] = 0.0f;
+	cubePositions[8][1] = 1.0f;
+
+	tempCalcPosX = (cubePositions[8][0] * cos(rotatePlaneAngle) - (cubePositions[8][1]) * sin(rotatePlaneAngle)) + cubePositions[0][0];
+	tempCalcPosY = ((cubePositions[8][1]) * cos(rotatePlaneAngle) + cubePositions[8][0] * sin(rotatePlaneAngle)) + cubePositions[0][1];
+
+	//proj_y1 = projectilePos[0][1];
+	proj_y1 = tempCalcPosY;
+	proj_y2 = cubePositions[0][1];
+	//proj_x1 = projectilePos[0][0];
+	proj_x1 = tempCalcPosX;
+	proj_x2 = cubePositions[0][0];
+
+	proj_m = (proj_y1 - proj_y2) / (proj_x1 - proj_x2);
+	proj_c = proj_y1 - (proj_x1 * proj_m);
+
+	simul_x1 = -(proj_c - obj_c) / (proj_m - obj_m);
+	simul_y1 = (((obj_m + proj_m) * simul_x1 + (obj_c + proj_c))) / 2;
+
+	//cubePositions[6][0] = bottomLeft[0];
+	//cubePositions[6][1] = bottomLeft[1];
+
+	//std::cout << simul_x1 << " " << simul_y1 << "\n";
+	//std::cout << "(proj-obj)m: " << proj_m << " " << obj_m << " (proj-obj)c: " << proj_c << " " << obj_c << "\n";
+	//std::cout << "proj_y1: " << proj_y1 << " proj_x1 * obj_m: " << proj_x1 * obj_m << "\n";
+
+	//if (rotateObjectAngle >= 0.0f && rotateObjectAngle <= 1.57f)
+	//{
+
+	GLfloat littleY, littleX;
+	/*
+	if (rotateObjectAngle < 1.57f)
+	{
+		if (obj_y2 <= obj_y1)
+		{
+			littleY = obj_y2;
+		}
+		else
+		{
+			littleY = obj_y1;
+		}
+
+		if (obj_x2 <= obj_x1)
+		{
+			littleX = obj_x2;
+		}
+		else
+		{
+			littleX = obj_x1;
+		}
+	}
+	else if (rotateObjectAngle > 1.57f && rotateObjectAngle < 3.14f)
+	{
+		if (obj_y2 <= obj_y1)
+		{
+			littleY = obj_y2;
+		}
+		else
+		{
+			littleY = obj_y1;
+		}
+
+		if (obj_x2 <= obj_x1)
+		{
+			littleX = obj_x2;
+		}
+		else
+		{
+			littleX = obj_x1;
+		}
+	}
+	else
+	{
+		if (obj_y2 <= obj_y1)
+		{
+			littleY = obj_y2;
+		}
+		else
+		{
+			littleY = obj_y1;
+		}
+
+		if (obj_x2 <= obj_x1)
+		{
+			littleX = obj_x2;
+		}
+		else
+		{
+			littleX = obj_x1;
+		}
+	
+	*/
+
+	cubePositions[8][0] = tempCalcPosX;
+	cubePositions[8][1] = tempCalcPosY;
+
+	//if (cubePositions[0][0] >= littleX && cubePositions[0][1] >= littleY)
+	//{
+		if (simul_x1 <= obj_x1 && simul_x1 >= obj_x2)// && simul_y1 <= obj_y1 && simul_y1 >= obj_y2 )
+		{
+
+			cubePositions[6][0] = simul_x1;
+			cubePositions[6][1] = simul_y1;
+			std::cout << "CALLED";
+		}
+		else
+		{
+			cubePositions[6][0] = 1.0f;
+			cubePositions[6][1] = 1.0f;
+		}
+	//}
+
+	rotateObjectAngle = 1.0f;
+
+	std::cout << "y = " << obj_m << "x + " << obj_c << "   ,   y = " << proj_m << "x + " << proj_c << "\n" << "tempcalcposy: " << tempCalcPosY << " tempcalcposx: " << tempCalcPosX << "\n" << "simul x: " << simul_x1 << " simul y: " << simul_y1 << "\n";
+
+
+	//objectVertices[3] = 1.0f + rotatePlaneAngle;
+	//objectVertices[4] = 1.0f + rotatePlaneAngle;
+	//objectVertices[5] = 1.0f + rotatePlaneAngle;
+	//topleft
+	
+
+
+	//}
+	//if (rotateObjectAngle >= 1.57f && rotateObjectAngle <= 3.14f)
+	//{
+		//if (simul_x1 <= obj_x1 && simul_x1 <= obj_x2)// && simul_y1 <= obj_y1 && simul_y1 >= obj_y2 )
+		//{
+		//	cubePositions[6][0] = simul_x1;
+		//	cubePositions[6][1] = simul_y1;
+		//}
+		//else
+		//{
+		//	cubePositions[6][0] = 1.0f;
+		//	cubePositions[6][1] = 1.0f;
+		//}
+	//}
+	
+	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+	/*
+	// Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response functions
+	glfwPollEvents();
+	do_movement();
+	// Set the required callback functions
+	glfwSetKeyCallback(window, key_callback);
+	*/
+
+	//glfwSetCursorPosCallback(window, mouse_callback);
+	//glfwSetScrollCallback(window, scroll_callback);
+
+	/* LIGHTING EXPERIMENT
+	for (int i = 0; i < 6; i++)
+	{
+		if ((cubePositions[1][1] <= (objectPositions[0][1] + objectVertices[1 + 8 * i]  + 5.0f)) && (cubePositions[1][1] >= (objectPositions[0][1] + objectVertices[1 + 8 * i])))
+		{
+			objectVertices[3 + 8 * i] = 0.5f;
+			objectVertices[4 + 8 * i] = 0.5f;
+			objectVertices[5 + 8 * i] = 0.5f;
+			std::cout << "CALLED\n";
+		}
+		else if ((cubePositions[1][1] <= (objectPositions[0][1] + objectVertices[1 + 8 * i])))
+		{
+			objectVertices[3 + 8 * i] -= 0.05f;
+			objectVertices[4 + 8 * i] -= 0.05f;
+			objectVertices[5 + 8 * i] -= 0.05f;
+		}
+	}
+	*/
+
+	//std::cout << "CubePos[1][1]: " << cubePositions[1][1] << "\n";
+	//std::cout << "ObjPos[0][1] + other: " << objectPositions[0][1] + objectVertices[1] << "\n";
+	//std::cout << "ObjPos[0][1] + other: " << objectPositions[0][1] + objectVertices[1] + 3.0f << "\n";
+
+	//std::cout << "cubepos[0][1]" << cubePositions[0][1] << "\n";
+	//std::cout << "objvert[13]" << objectVertices[13] << "\n";
