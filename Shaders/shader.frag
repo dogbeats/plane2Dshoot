@@ -41,6 +41,5 @@ void main()
 	// Linearly interpolate between both textures (second texture is only slightly combined)
 	color1 = texture(ourTexture1, TexCoord);//* vec4(ourColor, 0.0f);
 	color2 = texture(ourTexture2, TexCoord);//* vec4(ourColor, 0.0f);
-	//08081010337http://67.media.tumblr.com/1aa9d686a9a6cc106dc70c43813eae70/tumblr_o33066QylE1qzfyxjo1_1280.jpg
 }*/
 
