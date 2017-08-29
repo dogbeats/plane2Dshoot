@@ -41,6 +41,4 @@ void main()
 	// TexCoord = texCoord;
 	TexCoord = vec2(texCoord.x, 1.0 - texCoord.y);
 }
-
-//01256329986 2340 donna policy reference + authorisation
 */
